@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1463272147 source:/home/subtselnyi/AaDBlabs/lab6/lab6/main.cpp
+	<stdio.h>
+	<string.h>
+	<cctype>
+

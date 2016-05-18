@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1460013761 source:/home/subtselnyi/AaDBlabs/lab3/main.cpp
+	<iostream>
+	<cstdio>
+	<iomanip>
+	<stdlib.h>
+	<string>
+	<cstdlib>
+	"phonesCollection"
+
+1460013787 /home/subtselnyi/AaDBlabs/lab3/phonesCollection
+	<string.h>
+	<iostream>
+	<iomanip>
+	<stdio.h>
+	<cstdlib>
+

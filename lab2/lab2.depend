@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1458805928 source:/home/subtselnyi/AaDBlabs/lab2/main.cpp
+	<iostream>
+	<iomanip>
+	<math.h>
+	<time.h>
+	<cmath>
+	<cstdlib>
+

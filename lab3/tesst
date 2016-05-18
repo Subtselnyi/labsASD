@@ -1,0 +1,9 @@
+
+
+struct Phone{
+    unsigned char color;
+    char *model;
+    unsigned short diagonal;
+};
+
+

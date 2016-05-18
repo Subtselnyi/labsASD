@@ -1,0 +1,189 @@
+#include <string.h>
+#include <iostream>
+#include <iomanip>
+#include <stdio.h>
+#include <cstdlib>
+
+
+using namespace std;
+
+struct Phone{
+    float id;
+    unsigned char color;
+    char *model;
+    unsigned short diagonal;
+};
+
+Phone newPhone(unsigned char clr, char *mdl, unsigned short dgl){
+    Phone phone;
+    phone.color = clr;
+    phone.model = mdl;
+    phone.diagonal = dgl;
+    return phone;
+}
+
+
+void printPhones(Phone *phones,int number) {
+    for (int i=0; i<number; i++){
+        cout<<"id : "<<i+1;
+        cout<<setw(10)<<"MODEL: "<<phones[i].model;
+        cout<<setw(10)<<"Color: "<<phones[i].color;
+        cout<<setw(15)<<"Diagonal: "<<phones[i].diagonal;
+        cout<<endl;
+    }
+
+	}
+
+void *phoneAdd(Phone *phones,int number){
+    unsigned char color;
+    char model[10];
+    char *mdl;
+    unsigned short diagonal;
+    cout<<"Whats the model?"<<endl;
+    cin>>model;;
+    mdl=model;
+
+    cout<<"Whats the color?[blue-'b',red-'r']"<<endl;
+    cin>>color;
+    cout<<"Whats the diagonal of screen?"<<endl;
+    cin>>diagonal;
+
+    Phone newphone = newPhone(color,mdl,diagonal);;
+    //newphone =
+    Phone *newphones = new Phone[number+1];
+    cout<<newphone.model;
+    for (int i=0;i<number;i++){
+        newphones[i]=phones[i];
+    }
+    newphones[number]=newphone;
+    //phones = new Phone[number+1];
+    cout<<newphones[number].model;
+    for (int i=0;i<number+1;i++){
+        phones[i] = newphones[i];
+    }
+    for (int i=0;i<strlen(model);i++){
+    phones[number].model[i]=model[i];
+    }
+    cout<<phones[number].model;
+    phones[number].model = "nokia";
+
+     //   return phones;
+}
+
+void phoneDelete(Phone *phones, int number, int id){
+    for (int i = id; i < number; i++) {
+		if (i != (number - 1)) {
+			phones[i] = phones[i + 1];
+		}
+	}
+
+}
+
+void phonesSort(Phone *phones, int number){
+    for (int i = 0; i < (number - 1); i++) {
+		for (int j = i + 1; j < number; j++) {
+			if (phones[i].model[0] != phones[j].model[0]) {
+				if (phones[i].model[0] > phones[j].model[0]) {
+					Phone tmp = phones[i];
+					phones[i] = phones[j];
+					phones[j] = tmp;
+				}
+			}
+			else {
+				if (phones[i].model[1] > phones[j].model[1]) {
+					Phone tmp = phones[i];
+					phones[i] = phones[j];
+					phones[j] = tmp;
+				}
+			}
+
+		}
+	}
+}
+
+void phonesSearchDirect(Phone *phones, int number,int id){
+    if (id> number || id<1){
+        cout<<" Cant be thats id"<<endl;
+    }
+    else{
+        cout<<setw(10)<<"Model : "<<phones[id-1].model;
+        cout<<setw(10)<<"color : "<<phones[id-1].color;
+        cout<<setw(15)<<"Diagonal : "<<phones[id-1].diagonal;
+      }
+}
+
+int phonesSearchLineal(Phone *phones, int number,char *model){
+    bool check = true;
+    for (int i=0; i<number;i++){
+    bool check1=true;
+        for (int j=0; j<5;j++){
+            if (phones[i].model[j]!=model[j]) {
+            check1 =false;
+            }
+        }
+            if (check1){
+            /*cout<<"FOUND"<<endl;
+            cout<<setw(10)<<"Model : "<<phones[i].model;
+            cout<<setw(10)<<"color : "<<phones[i].color;
+            cout<<setw(15)<<"Diagonal : "<<phones[i].diagonal;*/
+            return i;
+            check=false;
+      }
+        }
+        if (check) {
+
+            cout<<"cant find"<<endl;
+            return 0;
+        }
+
+
+}
+
+int phonesSearchBinary(Phone *phones,int number,int dgl){
+   {
+	int first = 0,
+		last = number;
+	Phone *cpyphones = new Phone[number];
+	for (int i = 0; i < number; i++) {
+		cpyphones[i] = phones[i];
+	}
+
+	for (int i = 0; i < (number - 1); i++) {
+		for (int j = i + 1; j < number; j++) {
+			if (cpyphones[i].diagonal > cpyphones[j].diagonal) {
+				Phone tmp = cpyphones[i];
+				cpyphones[i] = cpyphones[j];
+				cpyphones[j] = tmp;
+			}
+		}
+	}
+
+	if (number == 0) {
+		return -1;
+	}
+	else if (cpyphones[0].diagonal > dgl) {
+		return -1;
+	}
+	else if (cpyphones[number - 1].diagonal < dgl) {
+		return -1;
+	}
+
+	while (first < last) {
+		int mid = first + (last - first) / 2;
+		if (dgl <= cpyphones[mid].diagonal)
+			last = mid;
+		else
+			first = mid + 1;
+	}
+
+	if (cpyphones[last].diagonal == dgl) {
+		return cpyphones[last].id+1;
+
+	}
+	else {
+		return -1;
+	}
+}
+}
+
+

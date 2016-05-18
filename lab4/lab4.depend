@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1461221436 source:/home/subtselnyi/AaDBlabs/lab4/main.cpp
+	<iostream>
+	<cstdlib>
+	<stdio.h>
+	<string.h>
+
